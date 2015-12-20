@@ -1,7 +1,12 @@
 // executables
-const int ledPin  = 6;
-const int led1Pin = 5;
-
+const int led1Pin  = 2;
+const int led2Pin = 3;
+const int led3Pin = 4;
+const int led4Pin = 5;
+const int led5Pin = 5;
+const int led6Pin = 7;
+const int led7Pin = 8;
+const int led8Pin = 9;
 
 
 // string to store each line of Serial communication
@@ -33,6 +38,7 @@ float CH6;
 
 void setup() {
 //
+Serial.begin(9600);
 Serial1.begin(9600);
 Serial2.begin(9600);
 
@@ -120,8 +126,22 @@ void loop() {
 
 //*********************** DO STUFF *********************
 
-  analogWrite(ledPin, pot);
-  analogWrite(led1Pin, pot1);
+  CH1 = map(CH1, 900, 1900, 0, 255);
+  CH2 = map(CH2, 900, 1900, 0, 255);
+  CH3 = map(CH3, 900, 1900, 0, 255);
+  CH4 = map(CH4, 900, 1900, 0, 255);
+  CH5 = map(CH5, 900, 1900, 0, 255);
+  CH6 = map(CH6, 900, 1900, 0, 255);
+
+  analogWrite(led7Pin, pot);
+  analogWrite(led8Pin, pot1);
+  
+  analogWrite(led1Pin, CH1);
+  analogWrite(led2Pin, CH2);
+  analogWrite(led3Pin, CH3);
+  analogWrite(led4Pin, CH4);
+  analogWrite(led5Pin, CH5);
+  analogWrite(led6Pin, CH6);
   
   
   
