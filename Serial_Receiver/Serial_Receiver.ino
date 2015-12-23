@@ -38,9 +38,9 @@ float CH6;
 
 void setup() {
 //
-Serial.begin(9600);
-Serial1.begin(9600);
-Serial2.begin(9600);
+Serial.begin(250000);
+Serial1.begin(250000);
+Serial2.begin(250000);
 
 // receives data from the first micro controller
   if(Serial1.available()){
@@ -49,7 +49,7 @@ Serial2.begin(9600);
 // receives data from the second micro controller  
   if (Serial2.available()){
   data2 = Serial2.readStringUntil('\n');
-  }
+  } 
 // resets the strings 
   data1 = "0";  
   data2 = "0";
@@ -59,7 +59,7 @@ Serial2.begin(9600);
 void loop() {
 //
   if (Serial1.available() > 0){
-    data1 = Serial1.readStringUntil('/n');
+    data1 = Serial1.readStringUntil('\n');
   }
   String payload1 = "";
   if (data1 != "0"){
@@ -126,12 +126,13 @@ void loop() {
 
 //*********************** DO STUFF *********************
 
-  CH1 = map(CH1, 900, 1900, 0, 255);
+ /* CH1 = map(CH1, 900, 1900, 0, 255);
   CH2 = map(CH2, 900, 1900, 0, 255);
   CH3 = map(CH3, 900, 1900, 0, 255);
   CH4 = map(CH4, 900, 1900, 0, 255);
   CH5 = map(CH5, 900, 1900, 0, 255);
   CH6 = map(CH6, 900, 1900, 0, 255);
+  */
 
   analogWrite(led7Pin, pot);
   analogWrite(led8Pin, pot1);
@@ -143,6 +144,18 @@ void loop() {
   analogWrite(led5Pin, CH5);
   analogWrite(led6Pin, CH6);
   
-  
+    Serial.print(CH1String);
+    Serial.print('\t');
+    Serial.print(CH2String);
+    Serial.print('\t');
+    Serial.print(CH3String);
+    Serial.print('\t');
+    Serial.print(CH4String);
+    Serial.print('\t');
+    Serial.print(CH5String);
+    Serial.print('\t');
+    Serial.println(CH6String);
+    
+    
   
 }
